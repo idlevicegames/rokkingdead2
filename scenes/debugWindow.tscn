@@ -17,7 +17,7 @@ margin/top = 0.0
 margin/right = 1030.0
 margin/bottom = 150.0
 
-[node name="column_1" type="VBoxContainer" parent="debugPanel"]
+[node name="column_0" type="VBoxContainer" parent="debugPanel"]
 
 focus/ignore_mouse = false
 focus/stop_mouse = false
@@ -29,7 +29,7 @@ margin/right = 100.0
 margin/bottom = 150.0
 alignment = 0
 
-[node name="column_2" type="VBoxContainer" parent="debugPanel"]
+[node name="column_1" type="VBoxContainer" parent="debugPanel"]
 
 focus/ignore_mouse = false
 focus/stop_mouse = false
@@ -38,6 +38,30 @@ size_flags/vertical = 2
 margin/left = 100.0
 margin/top = 5.0
 margin/right = 200.0
+margin/bottom = 150.0
+alignment = 0
+
+[node name="column_2" type="VBoxContainer" parent="debugPanel"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 200.0
+margin/top = 5.0
+margin/right = 295.0
+margin/bottom = 150.0
+alignment = 0
+
+[node name="column_3" type="VBoxContainer" parent="debugPanel"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 300.0
+margin/top = 5.0
+margin/right = 395.0
 margin/bottom = 150.0
 alignment = 0
 

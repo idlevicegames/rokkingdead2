@@ -7,6 +7,10 @@ var timer
 func _ready():
 	var player = preload("res://scenes/person.tscn").instance()
 	get_node(".").add_child(player)
+	
+	var hud = preload("res://scenes/hud.tscn").instance()
+	get_node(".").add_child(hud)
+	
 	_start_time()
 	self.set_process(true)
 	game._start_debug()
