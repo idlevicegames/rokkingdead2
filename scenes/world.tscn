@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=1]
+
+[ext_resource path="res://scenes/ocean.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/boat.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/sky.tscn" type="PackedScene" id=3]
+
+[node name="world" type="Node"]
+
+[node name="ocean" parent="." instance=ExtResource( 1 )]
+
+transform/pos = Vector2( 510.33, 576 )
+
+[node name="boat" parent="." instance=ExtResource( 2 )]
+
+z/z = 1
+
+[node name="sky" parent="." instance=ExtResource( 3 )]
+
+transform/pos = Vector2( 510.33, 188.396 )
+
+

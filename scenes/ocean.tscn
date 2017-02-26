@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=1]
+
+[ext_resource path="res://sprites/water.png" type="Texture" id=1]
+
+[node name="ocean" type="Sprite"]
+
+transform/pos = Vector2( 512, 576 )
+texture = ExtResource( 1 )
+
+
