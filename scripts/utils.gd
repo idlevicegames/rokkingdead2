@@ -11,10 +11,12 @@ func get_main_node():
 
 func create_map(w, h):
     var map = []
-
     for x in range(w):
         var col = []
         col.resize(h)
         map.append(col)
-
     return map
+
+func get_random_number(ceiling):
+    randomize()
+    return rand_range(1,ceiling)

@@ -1,7 +1,7 @@
 # hud.gd - hud functions
 extends Node
 
-onready var sldFishing = self.get_node("hudPanel/sldFishing")
+onready var sldFishing = self.get_node("hudPriority/sldFishing")
 
 func _ready():
 	# Priorities	
@@ -15,3 +15,4 @@ func _process(delta):
 func _priority_fishing_change(value):
 	game._set_priority_fishing(value)
 	game.emit_signal("priority_fishing_changed")
+	
