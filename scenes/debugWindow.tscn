@@ -65,4 +65,28 @@ margin/right = 395.0
 margin/bottom = 150.0
 alignment = 0
 
+[node name="column_4" type="VBoxContainer" parent="debugPanel"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 400.0
+margin/top = 5.0
+margin/right = 495.0
+margin/bottom = 150.0
+alignment = 0
+
+[node name="column_5" type="VBoxContainer" parent="debugPanel"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 500.0
+margin/top = 5.0
+margin/right = 595.0
+margin/bottom = 150.0
+alignment = 0
+
 
