@@ -11,9 +11,9 @@ signal elapsed_changed
 
 signal population_changed
 # Priorities
-export(int) var priority_fishing = 0 setget _set_priority_fishing, _get_priority_fishing
-export(int) var priority_scrapping = 0 setget _set_priority_scrapping, _get_priority_scrapping
-export(int) var priority_defecating = 100 setget _set_priority_defecating, _get_priority_defecating
+export(int) var priority_fishing = 30 setget _set_priority_fishing, _get_priority_fishing
+export(int) var priority_scrapping = 30 setget _set_priority_scrapping, _get_priority_scrapping
+export(int) var priority_defecating = 40 setget _set_priority_defecating, _get_priority_defecating
 
 signal priority_fishing_changed
 signal priority_scrapping_changed
@@ -122,3 +122,25 @@ func  _get_resource_defecation():
 func _time_change():
 	workers.work();
 	pass
+	
+#	
+#Greedy Algorithm
+#
+#When a slider moves up (down), all others need to move down (up). Each one has some space it can move (for down - their position, for up: 100-position).
+#
+#So when one slider moves, take the other sliders, sort them by the space they can move, and simply iterate through them.
+#
+#On each iteration, move the slider in the needed direction by (total to move left / sliders left in queue) or the distance it can move, whichever is smaller.
+#
+#This is linear in complexity (since you can use the same ordered queue over and over, once it has been sorted).
+#
+#In this scenario, no sliders get stuck, all try to move as much as they can, but only up to their fair share.
+#
+#Weighted move
+#
+#A different approach would be to weight the move they need to do. I think this is what you tried to do, judging by your "sliders get stuck at 0" statement. IMHO this is more natural, you just need to do more tweaking.
+#
+#Speculating again, I would say you try to weight the moves of different sliders by their position (This would directly translate to your stuck at 0 problem). However note that you can view the slider position from different directions - from the start or from the end. If you weight by position from start when decreasing and position from end when increasing, you should avoid your problem.
+#
+#This is quite similar in terminology to the previous part - don't weight the move to make by the position of the sliders, weight it by the space they have left to move in that direction.
+#	

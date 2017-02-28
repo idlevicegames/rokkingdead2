@@ -18,16 +18,20 @@ margin/top = 513.0
 margin/right = 250.0
 margin/bottom = 753.0
 
-[node name="sldFishing" type="HSlider" parent="hudPriority"]
+[node name="ctnSliders" type="Node" parent="hudPriority"]
+
+editor/display_folded = true
+
+[node name="sldDefecating" type="HSlider" parent="hudPriority/ctnSliders"]
 
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 0
-margin/left = 74.0
-margin/top = 21.0
-margin/right = 234.0
-margin/bottom = 37.0
+margin/left = 84.0
+margin/top = 580.0
+margin/right = 244.0
+margin/bottom = 596.0
 range/min = 0.0
 range/max = 100.0
 range/step = 1.0
@@ -39,16 +43,16 @@ tick_count = 0
 ticks_on_borders = true
 focus_mode = 2
 
-[node name="sldScrapping" type="HSlider" parent="hudPriority"]
+[node name="sldScrapping" type="HSlider" parent="hudPriority/ctnSliders"]
 
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 0
-margin/left = 74.0
-margin/top = 44.0
-margin/right = 234.0
-margin/bottom = 60.0
+margin/left = 84.0
+margin/top = 557.0
+margin/right = 244.0
+margin/bottom = 573.0
 range/min = 0.0
 range/max = 100.0
 range/step = 1.0
@@ -60,16 +64,16 @@ tick_count = 0
 ticks_on_borders = true
 focus_mode = 2
 
-[node name="sldDefecating" type="HSlider" parent="hudPriority"]
+[node name="sldFishing" type="HSlider" parent="hudPriority/ctnSliders"]
 
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 0
-margin/left = 74.0
-margin/top = 67.0
-margin/right = 234.0
-margin/bottom = 83.0
+margin/left = 84.0
+margin/top = 534.0
+margin/right = 244.0
+margin/bottom = 550.0
 range/min = 0.0
 range/max = 100.0
 range/step = 1.0
@@ -81,18 +85,18 @@ tick_count = 0
 ticks_on_borders = true
 focus_mode = 2
 
-[node name="lblFishing" type="Label" parent="hudPriority"]
+[node name="lblDefecating" type="Label" parent="hudPriority"]
 
 focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 0
 margin/left = 4.0
-margin/top = 24.0
-margin/right = 56.0
-margin/bottom = 38.0
+margin/top = 70.0
+margin/right = 64.0
+margin/bottom = 84.0
 custom_fonts/font = ExtResource( 2 )
-text = "Fishing"
+text = "Defecating"
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
@@ -113,18 +117,18 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="lblDefecating" type="Label" parent="hudPriority"]
+[node name="lblFishing" type="Label" parent="hudPriority"]
 
 focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 0
 margin/left = 4.0
-margin/top = 70.0
-margin/right = 58.0
-margin/bottom = 84.0
+margin/top = 24.0
+margin/right = 56.0
+margin/bottom = 38.0
 custom_fonts/font = ExtResource( 2 )
-text = "Defecating"
+text = "Fishing"
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
