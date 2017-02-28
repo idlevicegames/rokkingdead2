@@ -40,6 +40,9 @@ func _ready():
 	
 	column_4.add_child(_create_label("col4row2", "Large: "))
 	column_5.add_child(_create_label("col5row2", " "))
+	
+	column_4.add_child(_create_label("col4row3", "Poop: "))
+	column_5.add_child(_create_label("col5row3", " "))
 
 	self.set_process(true)
 	
@@ -56,6 +59,8 @@ func _process(delta):
 	column_5.get_node("col5row0").set_text(str(game._get_resource_small_trash()))
 	column_5.get_node("col5row1").set_text(str(game._get_resource_medium_trash()))
 	column_5.get_node("col5row2").set_text(str(game._get_resource_large_trash()))
+	
+	column_5.get_node("col5row3").set_text(str(int(game._get_resource_defecation())))
 	
 	pass
 	

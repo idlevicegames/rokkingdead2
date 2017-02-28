@@ -39,18 +39,92 @@ tick_count = 0
 ticks_on_borders = true
 focus_mode = 2
 
+[node name="sldScrapping" type="HSlider" parent="hudPriority"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 74.0
+margin/top = 44.0
+margin/right = 234.0
+margin/bottom = 60.0
+range/min = 0.0
+range/max = 100.0
+range/step = 1.0
+range/page = 0.0
+range/value = 0.0
+range/exp_edit = false
+range/rounded = false
+tick_count = 0
+ticks_on_borders = true
+focus_mode = 2
+
+[node name="sldDefecating" type="HSlider" parent="hudPriority"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 74.0
+margin/top = 67.0
+margin/right = 234.0
+margin/bottom = 83.0
+range/min = 0.0
+range/max = 100.0
+range/step = 1.0
+range/page = 0.0
+range/value = 0.0
+range/exp_edit = false
+range/rounded = false
+tick_count = 0
+ticks_on_borders = true
+focus_mode = 2
+
 [node name="lblFishing" type="Label" parent="hudPriority"]
 
 focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 0
-margin/left = 8.0
+margin/left = 4.0
 margin/top = 24.0
-margin/right = 60.0
+margin/right = 56.0
 margin/bottom = 38.0
 custom_fonts/font = ExtResource( 2 )
 text = "Fishing"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="lblScrapping" type="Label" parent="hudPriority"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 4.0
+margin/top = 47.0
+margin/right = 58.0
+margin/bottom = 61.0
+custom_fonts/font = ExtResource( 2 )
+text = "Scrapping"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="lblDefecating" type="Label" parent="hudPriority"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 4.0
+margin/top = 70.0
+margin/right = 58.0
+margin/bottom = 84.0
+custom_fonts/font = ExtResource( 2 )
+text = "Defecating"
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1

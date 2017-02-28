@@ -1,0 +1,43 @@
+{ "fish":
+	[
+		{	
+			"id": 1,
+			"name": "Large Trash", 
+			"drop": 0,  
+			"rate": 10
+		},
+		{	
+			"id": 2,
+			"name": "Medium Trash", 
+			"drop": 40,  
+			"rate": 50
+		},
+		{	
+			"id": 3,
+			"name":"Small Trash", 
+			"drop": 50,  
+			"rate": 100
+		},
+		{	
+			"id" : 0,
+			"name": "Nothing", 
+			"drop": 100,  
+			"rate": 99999
+		}
+],
+	"poop":
+	[
+		{	
+			"id": 1,
+			"name": "Poop", 
+			"drop": 0,  
+			"rate": 10
+		},
+		{	
+			"id": 1,
+			"name": "Large Trash", 
+			"drop": 10,  
+			"rate": 100
+		}
+	]
+}

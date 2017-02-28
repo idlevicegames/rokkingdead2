@@ -1,9 +1,15 @@
 # resources.gd Parameters and functions concerning resources
 extends Node
 
+
 #Max probability
+
 const MAX_PROBABILITY = 1000
 var   FISH_PROBABILITY = 0.00
+var   FISH_MODIFIER = 1
+
+var   POOP_PROBABILITY = 100
+var   POOP_MODIFIER = 0.1
 #
 # Type                 Probability  Cumulative
 # ----                 -----------  ----------
@@ -11,7 +17,9 @@ var   FISH_PROBABILITY = 0.00
 # Medium Trash           40            50    (10+40)   (10..40 yield medium trash)
 # Small Trash            50           100    (50+50)
 #
-var fish  = Dictionary()
+var resources = {}
+
+const resource_file = "res://data/resource_table.json"
 
 func _ready():
 	get_node("/root/game").connect("priority_fishing_changed", self, "_calc_fish_probability")	
@@ -25,31 +33,44 @@ func _calc_fish_probability():
 		#print("Max fish prob: " + str(FISH_PROBABILITY))
 
 func populate_loot_tables():
-	# Fish
-
-	fish[1] = {"id" : 1 ,"name": "Large Trash",  "drop":   0,  "rate":     10}
-	fish[2] = {"id" : 2 ,"name": "Medium Trash", "drop":  40,  "rate":     50} 
-	fish[3] = {"id" : 3 ,"name": "Small Trash",  "drop":  50,  "rate":    100} 
-	fish[0] = {"id" : 0 ,"name": "Nothing",      "drop":  100, "rate":   999999} 
-	#print("Fish dictionary size: " + str(fish.size()))
+	# Fish	
+	resources = utils._jason_to_dic(resource_file)
+	#print(resources.size())
+	#print("Fish dictionary size: " + str(resources.fish.size()))
+	
 
 func _get_fish():
 	#print("Max fish prob: " + str(FISH_PROBABILITY))
 	var catch = utils.get_random_number(FISH_PROBABILITY);
-	for i in fish.keys():
-		if (catch > fish[i].drop) && (catch < fish[i].rate) :
+	for i in range(resources.fish.size()):		
+		if (catch > float(resources.fish[i].drop)) && (catch < float(resources.fish[i].rate)) :
+			#print(str(catch))
+			if resources.fish[i].id == 1: 
+				#print(str(catch))
+				game._set_resource_large_trash(1 * FISH_MODIFIER)
+				pass
+			if resources.fish[i].id == 2: 
+				#print(str(catch))
+				game._set_resource_medium_trash(1 * FISH_MODIFIER)
+				pass
+			if resources.fish[i].id == 3:
+				#print(str(catch))
+				game._set_resource_small_trash(1 * FISH_MODIFIER)
+				pass				
+			return(resources.fish[i])
+			
+func _get_poop():
+	var poopChance = utils.get_random_number(POOP_PROBABILITY);
+	var poop = 0;
+	
+	for i in range(resources.poop.size()):		
+		if (poopChance > float(resources.poop[i].drop)) && (poopChance < float(resources.poop[i].rate)) :
 					
-			if fish[i].id == 1: 
-				print(str(catch))
-				game._set_resource_large_trash(game._get_resource_large_trash() + 1)
-				pass
-			if fish[i].id == 2: 
-				print(str(catch))
-				game._set_resource_medium_trash(game._get_resource_medium_trash() + 1)
-				pass
-			if fish[i].id == 3:
-				print(str(catch))
-				game._set_resource_small_trash(game._get_resource_small_trash() + 1)
-				pass
-				
-			return(fish[i])
+			if resources.poop[i].id == 1: 
+				poop = 1;
+				pass		
+			
+		poop = poop * (game._get_priority_defecating() * POOP_MODIFIER)
+		game._set_resource_defecation(poop)
+		return(poop)
+	
