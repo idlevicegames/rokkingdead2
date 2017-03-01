@@ -33,6 +33,13 @@ func _ready():
 	column_2.add_child(_create_label("col2row2", "Poop: "))
 	column_3.add_child(_create_label("col3row2", " "))
 	
+	column_2.add_child(_create_label("col2row3", "Refining: "))
+	column_3.add_child(_create_label("col3row3", " "))
+	
+	column_2.add_child(_create_label("col2row3", "Crafting: "))
+	column_3.add_child(_create_label("col3row4", " "))
+	
+	
 	
 	# Resources
 	column_4.add_child(_create_label("col4row0", "Small: "))
@@ -59,6 +66,8 @@ func _process(delta):
 	column_3.get_node("col3row0").set_text(str(game._get_priority_fishing()))
 	column_3.get_node("col3row1").set_text(str(game._get_priority_scrapping()))
 	column_3.get_node("col3row2").set_text(str(game._get_priority_defecating()))
+	column_3.get_node("col3row3").set_text(str(game._get_priority_refining()))
+	column_3.get_node("col3row4").set_text(str(game._get_priority_crafting()))
 	
 	column_5.get_node("col5row0").set_text(str(game._get_resource_small_trash()))
 	column_5.get_node("col5row1").set_text(str(game._get_resource_medium_trash()))

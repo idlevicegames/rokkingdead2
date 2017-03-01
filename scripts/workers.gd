@@ -6,7 +6,8 @@ func _ready():
 	
 func work():
 	if (game._get_priority_fishing()) > 0: fish();
-	if (game._get_priority_defecating()) > 0: defecate();
+	# Always poop, doesn't matter if it's a big priority!
+	defecate();
 	
 func fish():
  # Fish and determine loot

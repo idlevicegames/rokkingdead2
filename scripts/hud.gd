@@ -1,61 +1,19 @@
 # hud.gd - hud functions
 extends Node
 
-# Max Priorities
-var MAX_PRIORITIES = 100.00
-
-# Array of the sliders
-var sliders = []
-
-
-onready var sldFishing = self.get_node("hudPriority/ctnSliders/sldFishing")
-onready var sldScrapping = self.get_node("hudPriority/ctnSliders/sldScrapping")
-onready var sldDefecating = self.get_node("hudPriority/ctnSliders/sldDefecating")
-
 func _ready():		
-	
-	for n in self.get_node("hudPriority/ctnSliders/").get_children():
-		sliders.append(n)
-		#print(n.get_name())
-	# Before connecting the slider signals, set the value for all of the avaialble sliders	
-	sldFishing.set_value(game._get_priority_fishing())
-	sldScrapping.set_value(game._get_priority_scrapping())
-	sldDefecating.set_value(game._get_priority_defecating())
 
 	# Connect all of the signals listening for a change in one of the sliders
-	sldFishing.connect("value_changed", self, "_priority_fishing_change")
-	sldScrapping.connect("value_changed", self, "_priority_scrapping_change")
-	sldDefecating.connect("value_changed", self, "_priority_defecating_change")
-		
+	self.get_node("hudPriority/ctnSliders/").connect("_slider_value_change", self, "_priority_slider_change")
 	# Set processing to start
 	self.set_process(true)
 
 func _process(delta):
 	pass
 
-# Change of fishing priority driven by signal
-func _priority_fishing_change(value):
-	print("Firing priority fishing change")
-	#_priority_change(sldFishing)
-	_slider_change(sldFishing)
-	
-# Change of scraping priority driven by signal
-func _priority_scrapping_change(value):
-	print("Firing priority scrapping change")
-	#_priority_change(sldScrapping)
-	_slider_change(sldScrapping)
-	
-# Change of defecating priority driven by signal
-func _priority_defecating_change(value):
-	print("Firing priority defecating change")
-	#_priority_change(sldDefecating)
-	_slider_change(sldDefecating)
-
-func _slider_change(slider):
-	
-	sldFishing.disconnect("value_changed", self, "_priority_fishing_change")
-	sldScrapping.disconnect("value_changed", self, "_priority_scrapping_change")
-	sldDefecating.disconnect("value_changed", self, "_priority_defecating_change")
+func _priority_slider_change(slider, sliders):	
+	# Max Priorities
+	var MAX_PRIORITIES = 100.00
 	
 	# Current total of the changing slider
 	var amountToRedistribute = MAX_PRIORITIES - slider.get_value()	
@@ -80,6 +38,8 @@ func _slider_change(slider):
 				s.set_value(0)			
 			elif (slider.get_value() <= 0 || otherSlidersWeight <= 0):
 				s.set_value(50)
+			elif (amountToRedistribute == 1 || amountToRedistribute == 2):
+				s.set_value(amountToRedistribute / sliders.size())			
 			else:			
 				var newValue = 0;
 				var currentValue= s.get_value()
@@ -87,15 +47,3 @@ func _slider_change(slider):
 				print("  Current" +  str(currentValue) + " plus " + str(newValue) + " to: " + s.get_name())
 				s.set_value(newValue)
 				amountRedistributed += s.get_value()
-				#print("Amount left to redistribute: " + str(amountRedistributed))	
-		#amountToRedistribute -= amountRedistributed	
-		#print("Amount left to redistribute: " + str(amountRedistributed))
-	game._set_priority_fishing(sldFishing.get_value())
-	game._set_priority_scrapping(sldScrapping.get_value())
-	game._set_priority_defecating(sldDefecating.get_value())
-		
-	sldFishing.connect("value_changed", self, "_priority_fishing_change")
-	sldScrapping.connect("value_changed", self, "_priority_scrapping_change")
-	sldDefecating.connect("value_changed", self, "_priority_defecating_change")
-	
-	
