@@ -24,11 +24,14 @@ func _ready():
 	column_1.add_child(_create_label("col1row2", " "))
 
 	# Priorities
-	column_2.add_child(_create_label("col2row0", "Fish %: "))
+	column_2.add_child(_create_label("col2row0", "Fish: "))
 	column_3.add_child(_create_label("col3row0", " "))
 	
-	column_2.add_child(_create_label("col2row0", "Fish drop: "))
+	column_2.add_child(_create_label("col2row1", "Scrap: "))
 	column_3.add_child(_create_label("col3row1", " "))
+	
+	column_2.add_child(_create_label("col2row2", "Poop: "))
+	column_3.add_child(_create_label("col3row2", " "))
 	
 	
 	# Resources
@@ -54,7 +57,8 @@ func _process(delta):
 	column_1.get_node("col1row2").set_text(str(game._get_population()))
 	
 	column_3.get_node("col3row0").set_text(str(game._get_priority_fishing()))
-	column_3.get_node("col3row1").set_text(str(int(resources.FISH_PROBABILITY)))
+	column_3.get_node("col3row1").set_text(str(game._get_priority_scrapping()))
+	column_3.get_node("col3row2").set_text(str(game._get_priority_defecating()))
 	
 	column_5.get_node("col5row0").set_text(str(game._get_resource_small_trash()))
 	column_5.get_node("col5row1").set_text(str(game._get_resource_medium_trash()))

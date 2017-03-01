@@ -2,7 +2,7 @@
 extends Node
 
 # Max Priorities
-var MAX_PRIORITIES = 100
+var MAX_PRIORITIES = 100.00
 
 # Array of the sliders
 var sliders = []
@@ -58,118 +58,44 @@ func _slider_change(slider):
 	sldDefecating.disconnect("value_changed", self, "_priority_defecating_change")
 	
 	# Current total of the changing slider
-	var amountToRedistribute = MAX_PRIORITIES - int(slider.get_value())	
+	var amountToRedistribute = MAX_PRIORITIES - slider.get_value()	
 	var amountRedistributed = 0
-	print(str("Setting slider " + slider.get_name() + " amount left: " +  str(int(amountToRedistribute))));
+	print(str("Setting slider " + slider.get_name() + " amount left: " +  str(amountToRedistribute)));
 	
-	# Determine sum  of the other sliders
+
+	 #Determine sum  of the other sliders
 	var otherSlidersWeight = 0	
 	for s in sliders:
 		# Look into all other sliders that 
 		if (s.get_name() != slider.get_name()):
 			print("  Adding: " + str(s.get_value()) + " for: " + s.get_name())
-			otherSlidersWeight += int(s.get_value())
+			otherSlidersWeight += s.get_value()
 	
 	print("Other slider weight: " + str(otherSlidersWeight))
 	
 	for s in sliders:
 		# Look into all other sliders that 
 		if (s.get_name() != slider.get_name()):
-			var newValue = 0;
-			newValue = floor(s.get_value()/otherSlidersWeight * amountToRedistribute/sliders.size())
-			if newValue <0: newValue = 0
-			if newValue >= 100: newValue = 100
-			print("  Giving: " + str(newValue) + " to: " + s.get_name())
-			s.set_value(newValue)
-			amountRedistributed += s.get_value()
-	
-	amountToRedistribute -= amountRedistributed	
-	print("Amount left to redistribute: " + str(amountRedistributed))
+			if (slider.get_value() >= 100):
+				s.set_value(0)			
+			elif (slider.get_value() <= 0 || otherSlidersWeight <= 0):
+				s.set_value(50)
+			else:			
+				var newValue = 0;
+				var currentValue= s.get_value()
+				newValue = floor( s.get_value()/otherSlidersWeight * amountToRedistribute)
+				print("  Current" +  str(currentValue) + " plus " + str(newValue) + " to: " + s.get_name())
+				s.set_value(newValue)
+				amountRedistributed += s.get_value()
+				#print("Amount left to redistribute: " + str(amountRedistributed))	
+		#amountToRedistribute -= amountRedistributed	
+		#print("Amount left to redistribute: " + str(amountRedistributed))
+	game._set_priority_fishing(sldFishing.get_value())
+	game._set_priority_scrapping(sldScrapping.get_value())
+	game._set_priority_defecating(sldDefecating.get_value())
 		
 	sldFishing.connect("value_changed", self, "_priority_fishing_change")
 	sldScrapping.connect("value_changed", self, "_priority_scrapping_change")
 	sldDefecating.connect("value_changed", self, "_priority_defecating_change")
 	
-
-func _priority_change(slider):
 	
-	var currentFishing = game._get_priority_fishing()
-	var currentScrapping  = game._get_priority_scrapping()
-	var currentDefecating =  game._get_priority_defecating()
-	
-	var total = slider.get_value()
-	print(str("Setting slider: " +  slider.get_name() + " to: " +  str(int(total))));
-		
-	#game._set_priority_fishing(value)
-	#game.emit_signal("priority_fishing_changed")
-	# Get current total
-	# Determine sum  of the other sliders
-	var delta = MAX_PRIORITIES - total
-	print("Slider delta: " + str(int(delta)))
-	
-	
-	if (slider.get_name() == "sldFishing"):			
-
-		currentDefecating = currentDefecating + int(delta/3)
-		if (currentDefecating < 0 || total == 100):
-			currentDefecating = 0;
-		if (currentDefecating > 100):
-			currentDefecating = 100;		
-		sldDefecating.disconnect("value_changed", self, "_priority_defecating_change")
-		sldDefecating.set_value(currentDefecating)
-		game._set_priority_defecating(currentDefecating)
-		sldDefecating.connect("value_changed", self, "_priority_defecating_change")
-		
-		currentScrapping = currentScrapping + int(delta/3)
-		if (currentScrapping < 0 || total == 100):
-			currentScrapping = 0;
-		if (currentScrapping > 100):
-			currentScrapping = 100;			
-		sldScrapping.disconnect("value_changed", self, "_priority_scrapping_change")
-		sldScrapping.set_value(currentScrapping)
-		game._set_priority_scrapping(currentScrapping)
-		sldScrapping.connect("value_changed", self, "_priority_scrapping_change")
-	
-	if (slider.get_name() == "sldScrapping"):
-		
-		currentFishing = currentFishing + int(delta/3)		
-		if (currentFishing < 0 || total == 100):
-        	currentFishing = 0;
-		if (currentFishing > 100):
-        	currentFishing = 100;		
-		sldFishing.disconnect("value_changed", self, "_priority_fishing_change")
-		sldFishing.set_value(currentFishing)
-		game._set_priority_fishing(currentFishing)
-		sldFishing.connect("value_changed", self, "_priority_fishing_change")		
-		
-		currentDefecating = currentDefecating + int(delta/3)
-		if (currentDefecating < 0 || total == 100):
-			currentDefecating = 0;
-		if (currentDefecating > 100):
-			currentDefecating = 100;		
-		sldDefecating.disconnect("value_changed", self, "_priority_defecating_change")
-		sldDefecating.set_value(currentDefecating)
-		game._set_priority_defecating(currentDefecating)
-		sldDefecating.connect("value_changed", self, "_priority_defecating_change")
-
-	if (slider.get_name() == "sldDefecating"):		
-		
-		currentFishing = currentFishing + int(delta/3)		
-		if (currentFishing < 0 || total == 100):
-			currentFishing = 0;
-		if (currentFishing > 100):
-         	currentFishing = 100;		
-		sldFishing.disconnect("value_changed", self, "_priority_fishing_change")
-		sldFishing.set_value(currentFishing)
-		game._set_priority_fishing(currentFishing)
-		sldFishing.connect("value_changed", self, "_priority_fishing_change")		
-		
-		currentScrapping = currentScrapping + int(delta/3)
-		if (currentScrapping < 0 || total == 100):
-			currentScrapping = 0;
-		if (currentScrapping > 100):
-			currentScrapping = 100;			
-		sldScrapping.disconnect("value_changed", self, "_priority_scrapping_change")
-		sldScrapping.set_value(currentScrapping)
-		game._set_priority_scrapping(currentScrapping)
-		sldScrapping.connect("value_changed", self, "_priority_scrapping_change")

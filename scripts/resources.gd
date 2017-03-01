@@ -22,7 +22,7 @@ var resources = {}
 const resource_file = "res://data/resource_table.json"
 
 func _ready():
-	get_node("/root/game").connect("priority_fishing_changed", self, "_calc_fish_probability")	
+	#get_node("/root/game").connect("priority_fishing_changed", self, "_calc_fish_probability")	
 	populate_loot_tables()
 	pass
 
@@ -40,10 +40,11 @@ func populate_loot_tables():
 	
 
 func _get_fish():
+	_calc_fish_probability()
 	#print("Max fish prob: " + str(FISH_PROBABILITY))
 	var catch = utils.get_random_number(FISH_PROBABILITY);
 	for i in range(resources.fish.size()):		
-		if (catch > float(resources.fish[i].drop)) && (catch < float(resources.fish[i].rate)) :
+		if (catch > resources.fish[i].drop) && (catch < float(resources.fish[i].rate)) :
 			#print(str(catch))
 			if resources.fish[i].id == 1: 
 				#print(str(catch))
