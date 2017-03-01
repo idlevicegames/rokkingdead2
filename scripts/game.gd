@@ -11,10 +11,11 @@ signal elapsed_changed
 
 signal population_changed
 # Priorities
-export(int) var priority_fishing = 0 setget _set_priority_fishing, _get_priority_fishing
-export(int) var priority_scrapping = 20 setget _set_priority_scrapping, _get_priority_scrapping
-export(int) var priority_defecating = 80 setget _set_priority_defecating, _get_priority_defecating
+export(int) var priority_fishing = 50 setget _set_priority_fishing, _get_priority_fishing
 
+export(int) var priority_defecating = 50 setget _set_priority_defecating, _get_priority_defecating
+
+export(int) var priority_scrapping = 100 setget _set_priority_scrapping, _get_priority_scrapping
 export(int) var priority_refining = 0  setget _set_priority_refining, _get_priority_refining
 export(int) var priority_crafting = 0 setget _set_priority_crafting, _get_priority_crafting
 
@@ -23,6 +24,7 @@ signal priority_scrapping_changed
 signal priority_defecating_changed
 signal priority_refining_changed
 signal priority_crafting_changed
+
 
 # Resources
 
