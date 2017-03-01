@@ -7,6 +7,8 @@ onready var column_2 = self.get_node("debugPanel/column_2")
 onready var column_3 = self.get_node("debugPanel/column_3")
 onready var column_4 = self.get_node("debugPanel/column_4")
 onready var column_5 = self.get_node("debugPanel/column_5")
+onready var column_6 = self.get_node("debugPanel/column_6")
+onready var column_7 = self.get_node("debugPanel/column_7")
 
 func _ready():
 	
@@ -54,6 +56,28 @@ func _ready():
 	column_4.add_child(_create_label("col4row3", "Poop: "))
 	column_5.add_child(_create_label("col5row3", " "))
 
+	# Environmental Impact
+	
+	
+	column_6.add_child(_create_label("col6row0", "Ocean Temp: "))
+	column_7.add_child(_create_label("col7row0", ""))
+	
+	column_6.add_child(_create_label("col6row1", "Air Temp: "))
+	column_7.add_child(_create_label("col7row1", ""))
+	
+	column_6.add_child(_create_label("col6row2", "Ocean Ice: "))
+	column_7.add_child(_create_label("col7row2", ""))
+	
+	column_6.add_child(_create_label("col6row3", "Ocean Level: "))
+	column_7.add_child(_create_label("col7row3", ""))	
+
+	column_6.add_child(_create_label("col6row4", "Ocean Tox: "))
+	column_7.add_child(_create_label("col7row4", ""))
+	
+	column_6.add_child(_create_label("col6row5", "Ocean Diversity: "))
+	column_7.add_child(_create_label("col7row5", ""))
+	
+
 	self.set_process(true)
 	
 
@@ -75,6 +99,13 @@ func _process(delta):
 	
 	column_5.get_node("col5row3").set_text(str(int(game._get_resource_defecation())))
 	
+	column_7.get_node("col7row0").set_text(str(int(game._get_oceanTemperature())))
+	column_7.get_node("col7row1").set_text(str(int(game._get_airTemp())))
+	column_7.get_node("col7row2").set_text(str(int(game._get_oceanIce())))
+	column_7.get_node("col7row3").set_text(str(int(game._get_oceanLevel())))
+	column_7.get_node("col7row4").set_text(str(int(game._get_oceanToxicity())))
+	column_7.get_node("col7row5").set_text(str(int(game._get_oceanBioDiversity())))
+
 	pass
 	
 func _create_label(name, text):

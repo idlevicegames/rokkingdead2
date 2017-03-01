@@ -8,8 +8,26 @@ export(bool) var DEBUG = true
 export(int) var elapsed setget _set_elapsed, _get_elapsed
 export(int) var population = 0 setget _set_population, _get_population
 signal elapsed_changed
-
 signal population_changed
+
+# Global (earth) environment conditions
+
+export(float) var oceanBioDiversity = 100.00 #setget _set_oceanBioDiversity, _get_oceanBioDiversity
+export(float) var oceanIce = 100.00 #setget _set_oceanIce, _get_oceanIce
+export(float) var oceanToxicity = 0.00 #setget _set_oceanToxicity, _get_oceanToxicity
+export(float) var oceanTemperature = 0.00 #setget _set_oceanTemperature, _get_oceanTemperature
+export(float) var oceanLevel = 0.00 #setget _set_oceanLevel, _get_oceanLevel 
+export(float) var airTemp = 0.00 #setget _set_airTemp, _get_airTemp
+
+
+signal oceanTemperature_changed
+signal airTemp_changed
+signal oceanIce_changed
+signal oceanLevel_changed
+signal oceanToxicity_changed
+signal oceanBioDiversity_changed
+
+
 # Priorities
 export(int) var priority_fishing = 50 setget _set_priority_fishing, _get_priority_fishing
 
@@ -142,6 +160,51 @@ func _set_resource_defecation(new_value):
 func  _get_resource_defecation():
 	return(defecation)	
 	
+	
+# Environmental impacts
+
+func _set_oceanBioDiversity(new_value):
+	oceanBioDiversity += new_value
+	emit_signal("oceanBioDiversity_changed")
+	pass
+func  _get_oceanBioDiversity():
+	return(oceanBioDiversity)	
+	
+func _set_oceanIce(new_value):
+	oceanIce += new_value
+	emit_signal("oceanIce_changed")
+	pass
+func  _get_oceanIce():
+	return(oceanIce)	
+
+func _set_oceanToxicity(new_value):
+	oceanToxicity += new_value
+	emit_signal("oceanToxicity_changed")
+	pass
+func  _get_oceanToxicity():
+	return(oceanToxicity)	
+	
+func _set_oceanTemperature(new_value):
+	oceanTemperature += new_value
+	emit_signal("oceanTemperature_changed")
+	pass
+func  _get_oceanTemperature():
+	return(oceanTemperature)	
+
+func _set_oceanLevel(new_value):
+	oceanLevel += new_value
+	emit_signal("oceanLevel_changed")
+	pass
+func  _get_oceanLevel():
+	return(oceanLevel)	
+
+func _set_airTemp(new_value):
+	airTemp += new_value
+	emit_signal("airTemp_changed")
+	pass
+func  _get_airTemp():
+	return(airTemp)	
+
 # Central time controls
 func _time_change():
 	workers.work();
