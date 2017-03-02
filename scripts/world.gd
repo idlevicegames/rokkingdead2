@@ -6,7 +6,7 @@ var timer
 
 func _ready():
 	var player = preload("res://scenes/person.tscn").instance()
-	player.set_pos(Vector2(512,381.9))
+	player.set_pos(Vector2(512,384 - 5))
 	get_node(".").add_child(player)
 	
 
