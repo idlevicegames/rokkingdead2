@@ -5,9 +5,17 @@ extends Node
 var timer
 
 func _ready():
+	
+	var boat = preload("res://scenes/boat.tscn").instance()
+	boat.set_pos(Vector2(512,384))
+	boat.set_name("boat")
+	get_node(".").add_child(boat)
+	
 	var player = preload("res://scenes/person.tscn").instance()
 	player.set_pos(Vector2(512,384 - 5))
 	get_node(".").add_child(player)
+	
+
 	
 
 	var hud = preload("res://scenes/hud.tscn").instance()

@@ -1,10 +1,9 @@
-[gd_scene load_steps=6 format=1]
+[gd_scene load_steps=5 format=1]
 
 [ext_resource path="res://scripts/world.gd" type="Script" id=1]
-[ext_resource path="res://scenes/boat.tscn" type="PackedScene" id=2]
-[ext_resource path="res://scenes/ocean.tscn" type="PackedScene" id=3]
-[ext_resource path="res://scenes/sky.tscn" type="PackedScene" id=4]
-[ext_resource path="res://scenes/pillar.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/ocean.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/sky.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/pillar.tscn" type="PackedScene" id=4]
 
 [node name="world" type="Node"]
 
@@ -33,17 +32,11 @@ margin/right = 1024.0
 margin/bottom = 768.0
 columns = 32
 
-[node name="boat" parent="GridContainer" instance=ExtResource( 2 )]
-
-z/z = 1
-
-[node name="ocean" parent="." instance=ExtResource( 3 )]
+[node name="ocean" parent="." instance=ExtResource( 2 )]
 
 transform/pos = Vector2( 510.33, 574.772 )
 
-[node name="sky" parent="." instance=ExtResource( 4 )]
-
-transform/pos = Vector2( 512, 192 )
+[node name="sky" parent="." instance=ExtResource( 3 )]
 
 [node name="timer" type="Timer" parent="."]
 
@@ -52,9 +45,9 @@ wait_time = 1.0
 one_shot = false
 autostart = false
 
-[node name="pillar" parent="." instance=ExtResource( 5 )]
+[node name="pillar" parent="." instance=ExtResource( 4 )]
 
 transform/pos = Vector2( 512, 392.5 )
-transform/scale = Vector2( 0.5, 0.009 )
+transform/scale = Vector2( 16, 0.009 )
 
 

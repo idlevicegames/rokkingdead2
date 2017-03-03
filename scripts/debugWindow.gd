@@ -29,10 +29,10 @@ func _ready():
 	column_2.add_child(_create_label("col2row0", "Fish: "))
 	column_3.add_child(_create_label("col3row0", " "))
 	
-	column_2.add_child(_create_label("col2row1", "Scrap: "))
+	column_2.add_child(_create_label("col2row1", "Poop: "))
 	column_3.add_child(_create_label("col3row1", " "))
 	
-	column_2.add_child(_create_label("col2row2", "Poop: "))
+	column_2.add_child(_create_label("col2row2", "Scrapping: "))
 	column_3.add_child(_create_label("col3row2", " "))
 	
 	column_2.add_child(_create_label("col2row3", "Refining: "))
@@ -88,8 +88,8 @@ func _process(delta):
 	column_1.get_node("col1row2").set_text(str(game._get_population()))
 	
 	column_3.get_node("col3row0").set_text(str(game._get_priority_fishing()))
-	column_3.get_node("col3row1").set_text(str(game._get_priority_scrapping()))
-	column_3.get_node("col3row2").set_text(str(game._get_priority_defecating()))
+	column_3.get_node("col3row1").set_text(str(game._get_priority_defecating()))
+	column_3.get_node("col3row2").set_text(str(game._get_priority_scrapping()))
 	column_3.get_node("col3row3").set_text(str(game._get_priority_refining()))
 	column_3.get_node("col3row4").set_text(str(game._get_priority_crafting()))
 	
